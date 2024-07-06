@@ -1,6 +1,6 @@
 {
     "products": [
-      {
+      { "id":1,
         "name": "iPhone 14 Pro Ma",
         "unit_price": 5000,
         "stock": 5,
@@ -8,6 +8,7 @@
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4q4ZvEAHtq5k-zcqnVR63we97Dd6qap8Flw&s"
       },
       {
+        "id":2,
         "name": "Timon Racing Carrera",
         "unit_price": 8000,
         "stock": 2,
@@ -15,6 +16,7 @@
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRet0-N6mf-CaVR0MxWizI04dy2nLTKPhID7A&s"
       },
       {
+        "id": 3,
         "name": "Control joystick inalámbrico",
         "unit_price": 1000,
         "stock": 1,
@@ -22,6 +24,7 @@
         "img": "https://http2.mlstatic.com/D_NQ_NP_649872-MLA46706050160_072021-O.webp"
       },
       {
+        "id": 4,
         "name": "Bicicicleta Roadmaster",
         "unit_price": 1800,
         "stock": 1,
@@ -29,6 +32,7 @@
         "img": "https://http2.mlstatic.com/D_NQ_NP_753970-MLA50210702500_062022-O.webp"
       },
       {
+        "id": 5,
         "name": "Bicicleta Todo Terreno",
         "unit_price": 200,
         "stock": 0,
@@ -36,6 +40,7 @@
         "img": "https://exitocol.vtexassets.com/arquivos/ids/17088718/bicicleta-todoterreno-rin-26-18-azul.jpg?v=638150941897800000"
       },
       {
+        "id": 6,
         "name": "Balon De Futbol",
         "unit_price": 120,
         "stock": 6,
@@ -43,6 +48,7 @@
         "img": "https://png.pngtree.com/png-clipart/20210516/original/pngtree-soccer-ball-png-image_6296887.jpg"
       },
       {
+        "id": 7,
         "name": "Ducha Electrica",
         "unit_price": 120,
         "stock": 8,
@@ -50,6 +56,7 @@
         "img": "https://imgmedia.larepublica.pe/640x371/larepublica/original/2022/06/05/629d3cef66e09e649f5bc697.webp"
       },
       {
+        "id": 8,
         "name": "Gabinete De Baño",
         "unit_price": 650,
         "stock": 10,
@@ -57,6 +64,7 @@
         "img": "https://bylmo.com/cdn/shop/products/Gabinete-Bano-Artemisa-Wengue-GLW2838-4.jpg?v=1616779459"
       },
       {
+        "id": 9,
         "name": "Mueble Sanitario",
         "unit_price": 900,
         "stock": 2,
