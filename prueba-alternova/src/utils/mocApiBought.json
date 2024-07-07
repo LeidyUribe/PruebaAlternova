@@ -1,77 +1,77 @@
 {
-    "products": [
-      { "id":1,
-        "name": "iPhone 14 Pro Ma",
-        "unit_price": 5000,
-        "stock": 5,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id":2,
-        "name": "Timon Racing Carrera",
-        "unit_price": 8000,
-        "stock": 5,
-        "quantity": 0,
-        "total_price": 0
-        
-      },
-      {
-        "id": 3,
-        "name": "Control joystick inalámbrico",
-        "unit_price": 1000,
-        "stock": 1,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 4,
-        "name": "Bicicicleta Roadmaster",
-        "unit_price": 1800,
-        "stock": 1,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 5,
-        "name": "Bicicleta Todo Terreno",
-        "unit_price": 200,
-        "stock": 0,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 6,
-        "name": "Balon De Futbol",
-        "unit_price": 120,
-        "stock": 6,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 7,
-        "name": "Ducha Electrica",
-        "unit_price": 120,
-        "stock": 8,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 8,
-        "name": "Gabinete De Baño",
-        "unit_price": 650,
-        "stock": 10,
-        "quantity": 0,
-        "total_price": 0
-      },
-      {
-        "id": 9,
-        "name": "Mueble Sanitario",
-        "unit_price": 900,
-        "stock": 2,
-        "quantity": 0,
-        "total_price": 0
-      }
-      
-    ]
-  }
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 14 Pro Ma",
+      "unit_price": 5000,
+      "stock": 5,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 2,
+      "name": "Timon Racing Carrera",
+      "unit_price": 8000,
+      "stock": 5,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 3,
+      "name": "Control joystick inalámbrico",
+      "unit_price": 1000,
+      "stock": 1,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 4,
+      "name": "Bicicicleta Roadmaster",
+      "unit_price": 1800,
+      "stock": 1,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 5,
+      "name": "Bicicleta Todo Terreno",
+      "unit_price": 200,
+      "stock": 0,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 6,
+      "name": "Balon De Futbol",
+      "unit_price": 120,
+      "stock": 6,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 7,
+      "name": "Ducha Electrica",
+      "unit_price": 120,
+      "stock": 8,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 8,
+      "name": "Gabinete De Baño",
+      "unit_price": 650,
+      "stock": 10,
+      "quantity": 0,
+      "total_price": 0
+    },
+    {
+      "id": 9,
+      "name": "Mueble Sanitario",
+      "unit_price": 900,
+      "stock": 2,
+      "quantity": 0,
+      "total_price": 0
+    }
+  ],
+  "total": 0
+}
