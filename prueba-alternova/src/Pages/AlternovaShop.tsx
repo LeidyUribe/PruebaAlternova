@@ -27,18 +27,21 @@ const ShopPage = () => {
       (product: shoppingCart) =>
         (product.total_price = product.quantity * product.unit_price)
     );
-    console.log(bought);
   };
 
   const getTotal = (bill: bill) => {
     bill.total = bill.products
       .map((product) => product.total_price) 
-      .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+      .reduce((acumulador, valorActual) => acumulador + valorActual, 0)
   };
 
   const createBill = (bill: bill) => {
+    bill.products = bill.products.filter(item => item.quantity > 0);
+
     getTotalPrice(bill.products);
     getTotal(bill);
+    console.log(bill);
+
   };
 
   return (
