@@ -1,0 +1,29 @@
+.card{
+    border: 1px blue solid;
+    :first-child{
+        padding-left: 60px;
+    }
+}
+
+#name{
+    padding-left: 0px !important;
+}
+
+.actions{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    flex: 1 1 auto ;
+}
+// .actionsI {
+//     display: flex;
+//     flex-direction: column;
+//     flex-flow: column;
+//     flex: 1 1 auto ;
+// }
+.actionsII {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    flex: 1 1 auto ;
+}
