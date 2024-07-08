@@ -2,6 +2,7 @@
     display: grid;
     width: 100%;
 }
+
 .card {
     border: 1px blue solid;
     display: flex;
@@ -24,12 +25,7 @@
     columns: 3;
     justify-content: space-between;
 }
-
-
-// #actions {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     // flex-flow: column;
-//     // flex: 1 2 auto;
-// }
+.btn{
+    width: 10px;
+    height: 10px;
+}

@@ -9,6 +9,8 @@ import bought from "../utils/mocApiBought.json";
 const ShopPage = () => {
   const [alert, setAlert] = React.useState(false);
   const [items, setItems] = useState<shoppingCart[]>([]);
+  const [object, setObjects] = useState<bill>();
+  const [filter, setFilter] = useState<product>();
 
   const handleIncreaseQuantity = (data: product) => {
     const items = bought.products.map((item: shoppingCart) => {
@@ -38,22 +40,48 @@ const ShopPage = () => {
       .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
   };
 
-  const createBill = (bill: bill) => {
-    bill.products = bill.products.filter((item) => item.quantity > 0);
+  const createBill = () => {
+    setObjects(bought.products);
 
-    getTotalPrice(bill.products);
-    getTotal(bill);
-    console.log(bill);
+    getTotalPrice(bought.products);
+    getTotal(bought);
+    console.log(bought);
+  };
+
+  const categoryFilter = (name: string) => {
+    let result = data.products.filter(item => item.type === name)
+    setFilter(result)
+    console.log(filter)
+  };
+
+  const productFilter = (name: string) => {
+    data.products.filter(item => item.name === name)
+    console.log(name)
   };
 
   return (
     <div className="body">
       <NavBar>Alternova Shop</NavBar>
+
       {alert && (
         <span style={{ backgroundColor: "red", color: "black" }}>
           No hay cantidad suficiente para el pedido
         </span>
       )}
+      <div>
+        <input
+          type="text"
+          placeholder="Category Filter"
+          onChange={(e) =>  categoryFilter(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Producto Filter"
+          onChange={(e) =>  productFilter(e.target.value)}
+
+        />
+      </div>
+      &nbsp;
       <div className={style.body}>
         <div>
           {data.products.map((data: product, index) => (
@@ -80,14 +108,35 @@ const ShopPage = () => {
               </div>
             </div>
           ))}
+
           <ButtonCo type={"button"} onClick={() => createBill(bought)}>
-            total
+            Total
           </ButtonCo>
         </div>
 
         <div>
-          <table>
-            <thead>product</thead>
+          <table style={{ borderColor: "black" }}>
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit price</th>
+                <th scope="col">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bought.products.filter((item) => item.quantity > 0).map((item) => (
+                <>
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.unit_price}</td>
+                    <td>{item.total_price}</td>
+                  </tr>
+                </>
+              ))}
+              <tr>Total: {bought?.total}</tr>
+            </tbody>
           </table>
         </div>
       </div>
