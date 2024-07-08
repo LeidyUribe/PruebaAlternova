@@ -10,7 +10,8 @@ const ShopPage = () => {
   const [alert, setAlert] = React.useState(false);
   const [items, setItems] = useState<shoppingCart[]>([]);
   const [object, setObjects] = useState<bill>();
-  const [filter, setFilter] = useState<product>();
+  const [response, setResponse] = useState<product[]>();
+
 
   const handleIncreaseQuantity = (data: product) => {
     const items = bought.products.map((item: shoppingCart) => {
@@ -25,7 +26,10 @@ const ShopPage = () => {
 
   useEffect(() => {
     setItems(bought.products);
+    setResponse(data.products);
   }, [items]);
+  console.log(response);
+
 
   const getTotalPrice = (products: shoppingCart[]) => {
     products.map(
@@ -49,14 +53,12 @@ const ShopPage = () => {
   };
 
   const categoryFilter = (name: string) => {
-    let result = data.products.filter(item => item.type === name)
-    setFilter(result)
-    console.log(filter)
+    return response?.filter(item => item.type === name)
+    
   };
 
   const productFilter = (name: string) => {
-    data.products.filter(item => item.name === name)
-    console.log(name)
+    return response?.filter(item => item.name === name)
   };
 
   return (
@@ -82,9 +84,9 @@ const ShopPage = () => {
         />
       </div>
       &nbsp;
-      <div className={style.body}>
+      <div className={style.body}>        
         <div>
-          {data.products.map((data: product, index) => (
+          {response?.map((data: product, index) => (
             <div key={data.id} className={style.card}>
               <div id="item">{data.name}</div>
               <div id="img">
