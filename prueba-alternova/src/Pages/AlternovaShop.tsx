@@ -10,12 +10,15 @@ const ShopPage = () => {
   const [alert, setAlert] = React.useState(false);
   const [items, setItems] = useState<shoppingCart[]>([]);
 
-  const handleIncreaseQuantity = (id: number) => {
-    setItems(
-      bought.products.map((item: shoppingCart) =>
-        item.id === id ? { ...item, quantity: item.quantity++ } : item
-      )
-    );
+  const handleIncreaseQuantity = (data: product) => {
+    const items = bought.products.map((item: shoppingCart) => {
+      if (item.id === data.id && item.quantity >= data.stock) {
+        setAlert(true);
+      } else if (item.id === data.id) {
+        item.quantity++;
+      }
+    });
+    setItems(items);
   };
 
   useEffect(() => {
@@ -31,23 +34,26 @@ const ShopPage = () => {
 
   const getTotal = (bill: bill) => {
     bill.total = bill.products
-      .map((product) => product.total_price) 
-      .reduce((acumulador, valorActual) => acumulador + valorActual, 0)
+      .map((product) => product.total_price)
+      .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
   };
 
   const createBill = (bill: bill) => {
-    bill.products = bill.products.filter(item => item.quantity > 0);
+    bill.products = bill.products.filter((item) => item.quantity > 0);
 
     getTotalPrice(bill.products);
     getTotal(bill);
     console.log(bill);
-
   };
 
   return (
     <div className="body">
       <NavBar>Alternova Shop</NavBar>
-      {alert && <span>No hay cantidad suficiente para el pedido</span>}
+      {alert && (
+        <span style={{ backgroundColor: "red", color: "black" }}>
+          No hay cantidad suficiente para el pedido
+        </span>
+      )}
       <div className={style.body}>
         <div>
           {data.products.map((data: product, index) => (
@@ -66,7 +72,7 @@ const ShopPage = () => {
                 <div id="btn">
                   <ButtonCo
                     type={"button"}
-                    onClick={() => handleIncreaseQuantity(data.id)}
+                    onClick={() => handleIncreaseQuantity(data)}
                   >
                     Add to cart
                   </ButtonCo>
