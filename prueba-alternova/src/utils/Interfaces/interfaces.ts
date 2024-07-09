@@ -1,5 +1,4 @@
-export interface product {
-  id: number,
+export interface Product {
   name: string,
   unit_price: number,
   stock: number,
@@ -7,8 +6,7 @@ export interface product {
   img: string
 }
 
-export interface shoppingCart {//itemProduct
-  id: number,
+export interface Item {
   name: string,
   unit_price: number,
   stock: number,
@@ -16,7 +14,7 @@ export interface shoppingCart {//itemProduct
   total_price: number,
 }
 
-export interface bill{
-  products:[shoppingCart],
+export interface Bill{
+  products:[Item],
   total: number
 }

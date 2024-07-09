@@ -2,69 +2,102 @@ import React, { useEffect, useState } from "react";
 import style from "./shopPage.module.scss";
 import NavBar from "../Components/navBarComponent/NavBar";
 import ButtonCo from "../Components/buttonComponent/Button";
-import { bill, product, shoppingCart } from "../utils/Interfaces/interfaces";
+import { Bill, Product, Item } from "../utils/Interfaces/interfaces";
 import data from "../utils/mockApi.json";
-import bought from "../utils/mocApiBought.json";
+// import bought from "../utils/mocApiBought.json";
 
 const ShopPage = () => {
   const [alert, setAlert] = React.useState(false);
-  const [items, setItems] = useState<shoppingCart[]>([]);
-  const [object, setObjects] = useState<bill>();
-  const [response, setResponse] = useState<product[]>();
 
+  const [billData, setBillData] = useState<Bill>();
+  const [response, setResponse] = useState<Product[]>();
 
-  const handleIncreaseQuantity = (data: product) => {
-    const items = bought.products.map((item: shoppingCart) => {
-      if (item.id === data.id && item.quantity >= data.stock) {
+  const handleIncreaseQuantity = (product: Product) => {
+    return  billData?.products.map((item: Item) => {
+      if (item.name === product.name && item.quantity >= product.stock) {
         setAlert(true);
-      } else if (item.id === data.id) {
+      } else if (item.name === product.name) {
         item.quantity++;
       }
     });
-    setItems(items);
+  };
+
+  const addProduct = (product: Product) => {
+    if (billData?.products.length > 0) {
+      let items: [Item];
+      items = [
+        {
+          name: product.name,
+          unit_price: product.unit_price,
+          stock: product.stock,
+          quantity: 0,
+          total_price: 0,
+        },
+      ];
+
+      const concatItem = billData?.products.concat(items);
+      billData.products = concatItem;
+      
+      handleIncreaseQuantity(product);
+      setBillData({ products: billData?.products, total: 0 });
+    } else {
+      let items: [Item];
+      items = [
+        {
+          name: product.name,
+          unit_price: product.unit_price,
+          stock: product.stock,
+          quantity: 0,
+          total_price: 0,
+        },
+      ];
+      setBillData({ products: items, total: 0 });
+    }
+
+    console.log("billdata",billData);
   };
 
   useEffect(() => {
-    setItems(bought.products);
     setResponse(data.products);
-  }, [items]);
-  console.log(response);
+  }, [billData]);
 
-
-  const getTotalPrice = (products: shoppingCart[]) => {
-    products.map(
-      (product: shoppingCart) =>
+  const getTotalPrice = (products: Item[]) => {
+    return products.map(
+      (product: Item) =>
         (product.total_price = product.quantity * product.unit_price)
     );
   };
 
-  const getTotal = (bill: bill) => {
-    bill.total = bill.products
+  const getTotal = (bill: Bill) => {
+     bill.total = bill.products
       .map((product) => product.total_price)
       .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
   };
 
   const createBill = () => {
-    setObjects(bought.products);
+    getTotalPrice(billData.products);
+    getTotal(billData);
 
-    getTotalPrice(bought.products);
-    getTotal(bought);
-    console.log(bought);
+     setBillData(billData);
+
+    console.log(billData);
   };
 
   const categoryFilter = (name: string) => {
-    return response?.filter(item => item.type === name)
-    
+     const result = response?.filter((item) => item.type === name);
+     console.log("Categoryfilter",result);
+     return result;
   };
 
-  const productFilter = (name: string) => {
-    return response?.filter(item => item.name === name)
+  const productFilter = (name: string) => { 
+    const result = response?.filter((item) => item.name === name);
+    console.log(result);
+    return result;
   };
 
   return (
     <div className="body">
       <NavBar>Alternova Shop</NavBar>
-
       {alert && (
         <span style={{ backgroundColor: "red", color: "black" }}>
           No hay cantidad suficiente para el pedido
@@ -74,36 +107,34 @@ const ShopPage = () => {
         <input
           type="text"
           placeholder="Category Filter"
-          onChange={(e) =>  categoryFilter(e.target.value)}
+          onChange={(e) => categoryFilter(e.target.value)}
         />
         <input
           type="text"
           placeholder="Producto Filter"
-          onChange={(e) =>  productFilter(e.target.value)}
-
+          onChange={(e) => productFilter(e.target.value)}
         />
       </div>
       &nbsp;
-      <div className={style.body}>        
+      <div className={style.body}>
         <div>
-          {response?.map((data: product, index) => (
-            <div key={data.id} className={style.card}>
-              <div id="item">{data.name}</div>
+          {response?.map((product: Product, index) => (
+            <div key={product.name} className={style.card}>
+              <div id="item">{product.name}</div>
               <div id="img">
                 <img
-                  src={`${data.img}`}
-                  key={data.name}
+                  src={`${product.img}`}
+                  key={product.name}
                   width={200}
                   height={150}
                 />
               </div>
               <div className={style.actions}>
-                <div className={style.count}>{items[index]?.quantity}</div>
+                <div className={style.count}>
+                  {billData?.products[index+1]?.quantity}
+                </div>
                 <div id="btn">
-                  <ButtonCo
-                    type={"button"}
-                    onClick={() => handleIncreaseQuantity(data)}
-                  >
+                  <ButtonCo type={"button"} onClick={() => addProduct(product)}>
                     Add to cart
                   </ButtonCo>
                 </div>
@@ -111,7 +142,7 @@ const ShopPage = () => {
             </div>
           ))}
 
-          <ButtonCo type={"button"} onClick={() => createBill(bought)}>
+          <ButtonCo type={"button"} onClick={() => createBill(billData)}>
             Total
           </ButtonCo>
         </div>
@@ -127,7 +158,7 @@ const ShopPage = () => {
               </tr>
             </thead>
             <tbody>
-              {bought.products.filter((item) => item.quantity > 0).map((item) => (
+              {billData?.products.map((item) => (
                 <>
                   <tr>
                     <td>{item.name}</td>
@@ -137,7 +168,7 @@ const ShopPage = () => {
                   </tr>
                 </>
               ))}
-              <tr>Total: {bought?.total}</tr>
+              <tr>Total: {billData?.total}</tr>
             </tbody>
           </table>
         </div>
