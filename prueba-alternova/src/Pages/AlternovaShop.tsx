@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Button } from 'react-bootstrap';
+
+
+
 import style from "./shopPage.module.scss";
 import NavBar from "../Components/navBarComponent/NavBar";
-import ButtonCo from "../Components/buttonComponent/Button";
+// import Button from "../Components/buttonComponent/Button";
+
 import { Bill, Product, Item } from "../utils/Interfaces/interfaces";
 import data from "../utils/mockApi.json";
 // import bought from "../utils/mocApiBought.json";
@@ -103,6 +108,7 @@ const ShopPage = () => {
           No hay cantidad suficiente para el pedido
         </span>
       )}
+
       <div>
         <input
           type="text"
@@ -116,6 +122,7 @@ const ShopPage = () => {
         />
       </div>
       &nbsp;
+
       <div className={style.body}>
         <div>
           {response?.map((product: Product, index) => (
@@ -134,17 +141,17 @@ const ShopPage = () => {
                   {billData?.products[index+1]?.quantity}
                 </div>
                 <div id="btn">
-                  <ButtonCo type={"button"} onClick={() => addProduct(product)}>
+                  <Button variant="primary"  onClick={() => addProduct(product)}>
                     Add to cart
-                  </ButtonCo>
+                  </Button>
                 </div>
               </div>
             </div>
           ))}
 
-          <ButtonCo type={"button"} onClick={() => createBill(billData)}>
+          <Button type={"button"} onClick={() => createBill(billData)}>
             Total
-          </ButtonCo>
+          </Button>
         </div>
 
         <div>
